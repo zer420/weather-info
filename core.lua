@@ -105,17 +105,6 @@ callbacks.Register("Draw", "Weather Hud", function()
     if ui_options[3]:GetValue() then
         draw.Text(fposx - sizex + 5, fposy - sizey + 51, cache.weather);
     end;
-    if ui_options[4]:GetValue() then
-        draw.Color(ui_colors[4]:GetValue());
-        draw.SetTexture(draw.CreateTexture(common.DecodePNG(cache.icon)));
-        draw.FilledRect(fposx - sizex, fposy - sizey + 72, fposx - sizex + 64, fposy - sizey + 64 + 64);
-        draw.SetTexture(nil);
-    end;
-    if ui_options[5]:GetValue() then
-        draw.SetFont(fonts.big);
-        draw.Text(fposx - sizex + 69, fposy - sizey + 82, cache.temp);
-    end;
-    draw.SetFont(fonts.small);
     if ui_options[6]:GetValue() then
         draw.Text(fposx - sizex + 180, fposy - sizey + 32, "Precipitation: " .. cache.prec);
     end;
@@ -125,7 +114,16 @@ callbacks.Register("Draw", "Weather Hud", function()
     if ui_options[8]:GetValue() then
         draw.Text(fposx - sizex + 180, fposy - sizey + 70, "Wind: " .. cache.wind);
     end;
-    
+    if ui_options[5]:GetValue() then
+        draw.SetFont(fonts.big);
+        draw.Text(fposx - sizex + 69, fposy - sizey + 82, cache.temp);
+    end;
+    if ui_options[4]:GetValue() then
+        draw.Color(ui_colors[4]:GetValue());
+        draw.SetTexture(draw.CreateTexture(common.DecodePNG(cache.icon)));
+        draw.FilledRect(fposx - sizex, fposy - sizey + 72, fposx - sizex + 64, fposy - sizey + 64 + 64);
+        draw.SetTexture(nil);
+    end;
     if input.IsButtonDown(1) and gui.Reference("Menu"):IsActive() then 
         if mx >= fposx-sizex and mx < fposx+sizex and my >= fposy-sizey and my < fposy+sizey then
             indic_grab = true;
